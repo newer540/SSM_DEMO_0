@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="web.Student" alias="Student"/>
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"
+                     javaType="TypeHandler.GenderType"/>
+
+    </typeHandlers>
+
+
+    <!-- 这里添加的是执行CRUD操作的接口对应的配置文件(xml文件) -->
+    <mappers>
+        <package name="Mapper"/>
+    </mappers>
+</configuration> 

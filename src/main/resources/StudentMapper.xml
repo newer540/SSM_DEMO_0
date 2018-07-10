@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="Mapper.StudentMapper">
+    <resultMap id="Student_Map" type="Student">
+        <id property="stuId" column="stu_id"/>
+        <result property="stuName" column="stu_name"/>
+        <result property="stuGender" column="stu_gender"
+        typeHandler="TypeHandler.GenderHandler"  />
+        <result property="stuCity" column="stu_city"/>
+    </resultMap>
+    <sql id="stu_field">
+        stu_name,stu_gender,stu_city
+    </sql>
+    <select id="selectStuById"  resultMap="Student_Map" parameterType="int">
+            SELECT  * FROM  student where  stu_id=#{stuId}
+    </select>
+    <insert id="insertStu"  parameterType="Student"   useGeneratedKeys="true" keyProperty="stuId" >
+        INSERT INTO student(<include refid="stu_field"/> )
+        VALUES(#{stuName},#{stuGender},#{stuCity});
+    </insert>
+    <delete id="deleteStuById"  parameterType="int">
+        delete from student where stu_id=#{stuId}
+    </delete>
+    <update id="updateNameById" >
+        update student set stu_name=#{param1} where stu_id=#{param2}
+    </update>
+
+
+</mapper>
